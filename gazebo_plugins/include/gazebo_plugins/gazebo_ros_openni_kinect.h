@@ -44,7 +44,7 @@
 #include <image_transport/image_transport.h>
 
 // gazebo stuff
-#include <sdf/Param.hh>
+#include <sdf/sdf.hh>
 #include <gazebo/physics/physics.hh>
 #include <gazebo/transport/TransportTypes.hh>
 #include <gazebo/msgs/MessageTypes.hh>

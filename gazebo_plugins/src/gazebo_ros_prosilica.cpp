@@ -36,7 +36,6 @@
 #include <gazebo/rendering/Camera.hh>
 
 #include <sdf/sdf.hh>
-#include <sdf/Param.hh>
 
 #include <sensor_msgs/Image.h>
 #include <sensor_msgs/CameraInfo.h>

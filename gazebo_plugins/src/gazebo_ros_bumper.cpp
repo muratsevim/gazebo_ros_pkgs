@@ -29,7 +29,6 @@
 #include <gazebo/physics/Contact.hh>
 #include <gazebo/sensors/Sensor.hh>
 #include <sdf/sdf.hh>
-#include <sdf/Param.hh>
 #include <gazebo/common/Exception.hh>
 #include <gazebo/sensors/SensorTypes.hh>
 #include <gazebo/math/Pose.hh>
