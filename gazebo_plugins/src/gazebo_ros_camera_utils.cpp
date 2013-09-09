@@ -291,11 +291,15 @@ void GazeboRosCameraUtils::LoadThread()
              this->image_topic_name_.c_str());
   }
 
-  this->image_pub_ = this->itnode_->advertise(
-    this->image_topic_name_, 2,
-    boost::bind(&GazeboRosCameraUtils::ImageConnect, this),
-    boost::bind(&GazeboRosCameraUtils::ImageDisconnect, this),
-    ros::VoidPtr(), &this->camera_queue_);
+  try{
+    this->image_pub_ = this->itnode_->advertise(
+      this->image_topic_name_, 2,
+      boost::bind(&GazeboRosCameraUtils::ImageConnect, this),
+      boost::bind(&GazeboRosCameraUtils::ImageDisconnect, this),
+      ros::VoidPtr(), &this->camera_queue_);
+  }catch(const std::exception& e){
+    ROS_WARN("exception: %s", e.what());
+  }
 
   // camera info publish rate will be synchronized to image sensor
   // publish rates.
@@ -488,7 +492,7 @@ void GazeboRosCameraUtils::PutCameraData(const unsigned char *_src)
     return;
 
   /// don't bother if there are no subscribers
-  if (this->image_connect_count_ > 0)
+  if (this->image_pub_.getNumSubscribers() > 0)
   {
     boost::mutex::scoped_lock lock(this->lock_);
 
